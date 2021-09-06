@@ -11,10 +11,6 @@ interface WeatherApis {
         @Query("appid") appId: String
     ): Call<MainActivity.WeatherInfoData>
 
-    @GET("data/2.5/weather")
-    fun getWeatherInfo2(
-        @Query("q") country: String,
-        @Query("appid") appId: String
-    ): Call<MainActivity.WeatherInfoData2>
+
 
 }

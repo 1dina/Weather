@@ -37,18 +37,7 @@ class MainActivity : AppCompatActivity() {
                         Glide.with(this@MainActivity)
                                 .load(link)
                                 .into(Image)
-                    }
 
-                    override fun onFailure(call: Call<MainActivity.WeatherInfoData>, t: Throwable) {
-                        println("error")
-                    }
-                })
-        services.getWeatherInfo2("Egypt", "9c31f07a0a0792c4f95a1f59839287bd")
-                .enqueue(object : Callback<MainActivity.WeatherInfoData2> {
-                    override fun onResponse(
-                            call: Call<MainActivity.WeatherInfoData2>,
-                            response: Response<MainActivity.WeatherInfoData2>
-                    ) {
                         val Text0 = findViewById<TextView>(R.id.TodayTemp)
                         val result = response.body()?.main?.temp?.minus(272.15)?.toInt()
                         Text0.setText(result.toString())
@@ -60,10 +49,9 @@ class MainActivity : AppCompatActivity() {
                         Text2.setText(result3.toString())
 
 
-                        // to glide..
                     }
 
-                    override fun onFailure(call: Call<MainActivity.WeatherInfoData2>, t: Throwable) {
+                    override fun onFailure(call: Call<MainActivity.WeatherInfoData>, t: Throwable) {
                         println("error")
                     }
                 })
@@ -76,9 +64,9 @@ class MainActivity : AppCompatActivity() {
 
     data class WeatherInfo(val description: String, val icon: String)
 
-    data class WeatherInfoData(val weather: List<WeatherInfo>)
+    data class WeatherInfoData(val weather: List<WeatherInfo>, val main: WeatherInfo2)
     data class WeatherInfo2(val temp: Double, val temp_min: Double, val temp_max: Double)
-    data class WeatherInfoData2(val main: WeatherInfo2)
+
 
 }
 
